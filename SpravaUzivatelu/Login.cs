@@ -19,54 +19,64 @@ namespace SpravaUzivatelu
             LinkToRegistration.Text = "Register";
             ConfirmPasswordTextBox.Visible = false;
             LabelConfirmPassword.Visible = false;
-
         }
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            bool isOk;
-            if(LoginLabel.Text == "Register")
+            if (LoginLabel.Text == "Login")
             {
-                isOk = UserManager.RegisterUser(UsernameTextBox.Text, PasswordTextBox.Text, ConfirmPasswordTextBox.Text);
-               
-                if (!isOk)
-                {
-                    LabelErrorMessage.Text = UserManager.ErrorMessage;
-                }
-                else
-                {
-                    LabelErrorMessage.Text = "";
-                    LinkToRegistration_LinkClicked(null, null); //back to login
-                }
+                RegistrationUser();
             }
-            else if(LoginLabel.Text == "Login")
+            else if (LoginLabel.Text == "Register")
             {
-                isOk = UserManager.LoginUser(UsernameTextBox.Text, PasswordTextBox.Text);
-
-                if (!isOk)
-                {
-                    LabelErrorMessage.Text = UserManager.ErrorMessage;
-                }
-                else
-                {
-                    LabelErrorMessage.Text = "";
-                    if (UserManager.LoggedUser.Role == "Admin")
-                    {
-                        AdminView adminView = new AdminView();
-                        adminView.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        UserView userView = new UserView();
-                        userView.Show();
-                        this.Hide();
-                    }
-                }
+                LoginUser();
             }
             else
             {
                 LabelErrorMessage.Text = "Unknown action.";
             }
+        }
+        private void RegistrationUser()
+        {
+            bool isOk = UserManager.RegisterUser(UsernameTextBox.Text, PasswordTextBox.Text, ConfirmPasswordTextBox.Text);
+            if (!isOk)
+            {
+                LabelErrorMessage.Text = UserManager.ErrorMessage;
+                return;
+            }
+            LabelErrorMessage.Text = "";
+            SwitchToLoginMode();
+        }
+        private void LoginUser()
+        {
+            bool isOk = UserManager.LoginUser(UsernameTextBox.Text, PasswordTextBox.Text);
+
+            if (!isOk)
+            {
+                LabelErrorMessage.Text = UserManager.ErrorMessage;
+                return;
+            }
+
+            LabelErrorMessage.Text = "";
+
+            // otevřít formulář podle role
+            if (UserManager.LoggedUser.Role == "Admin")
+            {
+                OpenForm(new AdminView());
+            }
+            else
+            {
+                OpenForm(new UserView());
+            }
+        }
+        private void OpenForm(Form form)
+        {
+            this.Hide();
+            form.FormClosed += (s, args) => this.Close(); // hned co se novej otevře tak se starej zavře
+            form.Show();
+        }
+        private void SwitchToLoginMode()
+        {
+            LinkToRegistration_LinkClicked(null, null);
         }
 
         //Zmeny Textu (Login / Register)

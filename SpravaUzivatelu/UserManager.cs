@@ -50,13 +50,11 @@ namespace SpravaUzivatelu
         {
             //TODO: Získat uživatele z databáze
             List<User> usersFromDatabase = new List<User> { new User("admin", PasswordHasher.HashPassword("admin"), "Admin", DateTime.Now)};
-
             if (!usersFromDatabase.Any(u => u.Username == username && PasswordHasher.VerifyPassword(password, u.Password)))
             {
                 ErrorMessage = "Invalid username or password.";
                 return false;
             }
-
             LoggedUser = usersFromDatabase.First(u => u.Username == username);
             return true;
         }

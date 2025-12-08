@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SpravaUzivatelu.Model;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SpravaUzivatelu.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SpravaUzivatelu
 {
@@ -47,13 +49,12 @@ namespace SpravaUzivatelu
         public static bool LoginUser(string username, string password)
         {
             //TODO: Získat uživatele z databáze
-            List<User> usersFromDatabase = new List<User>();
+            List<User> usersFromDatabase = new List<User> { new User("admin", PasswordHasher.HashPassword("admin"), "Admin", DateTime.Now)};
             if (!usersFromDatabase.Any(u => u.Username == username && PasswordHasher.VerifyPassword(password, u.Password)))
             {
                 ErrorMessage = "Invalid username or password.";
                 return false;
             }
-
             LoggedUser = usersFromDatabase.First(u => u.Username == username);
             return true;
         }

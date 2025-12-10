@@ -1,11 +1,18 @@
-﻿using SpravaUzivatelu.Model;
-using SpravaUzivatelu;
-using System.Data;
+﻿using SpravaUzivatelu;
+using SpravaUzivatelu.DbContext;
+using SpravaUzivatelu.Model;
 using System;
+using System.Data;
+using System.Windows.Forms;
 
 public class ActionManager
 {
+    UserManager _userManager;
     private User currentUser = null;
+    public ActionManager()
+    {
+        _userManager = new UserManager();
+    }
 
     // AKCE PRO VŠECHNY UŽIVATELE
     // Změna vlastního hesla
@@ -15,7 +22,7 @@ public class ActionManager
         if (currentUser == null)
             return (false, "Nejste přihlášen");
 
-        return UserManager.ChangePassword(currentUser.Username, oldPassword, newPassword);
+        return _userManager.ChangePassword(currentUser.Username, oldPassword, newPassword);
     }
 
     // Zobrazení vlastního profilu
@@ -103,9 +110,9 @@ public class ActionManager
             return (false, "Nemáte oprávnění k této akci");
         }
 
-        var result = UserManager.CreateAdmin(username, password);
+        var (success, message) = _userManager.CreateNewAdmin(username, password);
 
-        if (result)
+        if (success)
         {
             DatabaseManager.LogEvent(currentUser.Username, "VYTVOŘENÍ_ADMINA",
                 $"Vytvořen nový admin: {username}");
@@ -113,5 +120,18 @@ public class ActionManager
         }
 
         return (false, "Nepodařilo se vytvořit administrátora");
+    }
+
+    public (bool success, string message) RegisterNewUser(string username, string password, string confirmPassword)
+    {
+        var(success, message) =_userManager.RegisterUser(username, password, confirmPassword);
+        if (success)
+        {
+            DatabaseManager.LogEvent(currentUser.Username, "VYTVOŘENÍ_USERU",
+                $"Vytvořen nový user: {username}");
+            return (true, $"Uživatel {username} byl vytvořen");
+        }
+        
+
     }
 }

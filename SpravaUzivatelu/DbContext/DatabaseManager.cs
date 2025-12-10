@@ -295,7 +295,7 @@ namespace SpravaUzivatelu.DbContext
         }
 
         // Zaloguje událost do databáze
-        public void LogEvent(string username, string action, string details = "")
+        public static void LogEvent(string username, string action, string details = "")
         {
             try
             {

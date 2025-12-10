@@ -22,7 +22,7 @@ namespace SpravaUzivatelu
         // Variables
         public User LoggedUser { get; private set; } = null;
         // Registrace
-        public (bool success, string message) RegisterUser(string username, string password, string confirmPassword)
+        public (bool success, string message) RegisterUser(string username, string password, string confirmPassword, bool isAdmin = false)
         {
             // Ověření zadaných údajů
             if (password != confirmPassword)
@@ -43,7 +43,7 @@ namespace SpravaUzivatelu
 
             // Vytvoření nového uživatele
             string hashedPassword = PasswordHasher.HashPassword(password);
-            User newUser = new User(username, hashedPassword, "User", DateTime.Now);
+            User newUser = new User(username, hashedPassword, isAdmin ? "Admin" : "User", DateTime.Now);
 
             //Uložení uživatele do databáze
             _databaseManager.AddUser(newUser);
@@ -75,6 +75,54 @@ namespace SpravaUzivatelu
             {
                 return (false, "No user is currently logged in.");
             }
+        }
+        // Vracení uživatele
+        private User GetUser()
+        {
+            return LoggedUser;
+        }
+        // Změna hesla uživatele
+        public (bool success, string message) ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            // Ověření nového hesla
+            (bool isPassValid, string errorMessage) = ValidatePassword(newPassword);
+            if (!isPassValid)
+            {
+                return (false, errorMessage);
+            }
+            string newPasswordHash = PasswordHasher.HashPassword(newPassword);
+            // Změna hesla v databázy
+            bool success = _databaseManager.UpdateUserPassword(username, newPasswordHash);
+            if (!success)
+            {
+                return (false, "Password failed to update");
+            }
+            return (true, "Password was successfully updated");
+        }
+        // Vrácení všech uživatelů jako DataTable
+        public DataTable GetAllUsersForAdmin()
+        {
+            return _databaseManager.GetAllUsersAsDataTable();
+        }
+        // Vytvoření nového admina
+        public (bool success, string message) CreateNewAdmin(string username, string password)
+        {
+            (bool success, string errorMessage) = RegisterUser(username, password, password, true);
+            if (!success)
+            {
+                return (false, errorMessage);
+            }
+            return (true, "Admin was successfully added");
+        }
+        // Smazání uživatele
+        public (bool success, string message) DeleteUser(string username)
+        {
+            bool success = _databaseManager.DeleteUser(username);
+            if (!success)
+            {
+                return (false, "Failed to delete user");
+            }
+            return (true, "User was successfully deleted");
         }
         // Validace uživatelského jména
         private bool ValidateUsername(string username)

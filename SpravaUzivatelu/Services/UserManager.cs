@@ -9,7 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace SpravaUzivatelu
 {
-    internal static class UserManager
+    public static class UserManager
     {
         // Settings
         private static int MIN_PASSWORD_LENGTH = 8;
@@ -50,7 +50,7 @@ namespace SpravaUzivatelu
         {
             //TODO: Získat uživatele z databáze
             List<User> usersFromDatabase = new List<User> { new User("admin", PasswordHasher.HashPassword("admin"), "Admin", DateTime.Now)};
-            if (!usersFromDatabase.Any(u => u.Username == username && PasswordHasher.VerifyPassword(password, u.Password)))
+            if (!usersFromDatabase.Any(u => u.Username == username && PasswordHasher.VerifyPassword(password, u.PasswordHash)))
             {
                 ErrorMessage = "Invalid username or password.";
                 return false;

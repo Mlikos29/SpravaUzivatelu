@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace SpravaUzivatelu.Model
 {
-    internal class User
+    public class User
     {
+        public int Id { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
+        public string PasswordHash { get; set; } // bych to prejmenoval na PasswordHash
         public string Role { get; set; }
         public DateTime RegistrationDate { get; set; }
-        public User(string username, string password, string role, DateTime registrationDate)
+        public User(string username, string passwordHash, string role, DateTime registrationDate)
         {
             Username = username;
-            Password = password;
+            PasswordHash = passwordHash;
             Role = role;
             RegistrationDate = registrationDate;
         }

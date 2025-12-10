@@ -15,6 +15,7 @@ namespace SpravaUzivatelu
         static void Main()
         {
             Application.EnableVisualStyles();
+            DatabaseManager.InitializeDatabase();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
         }

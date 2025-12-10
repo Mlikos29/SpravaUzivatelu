@@ -6,74 +6,78 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using SpravaUzivatelu.DbContext;
 
 namespace SpravaUzivatelu
 {
-    public static class UserManager
+    public class UserManager
     {
+        private DatabaseManager _databaseManager;
+        public UserManager()
+        {
+            _databaseManager = new DatabaseManager();
+        }
         // Settings
-        private static int MIN_PASSWORD_LENGTH = 8;
+        private int MIN_PASSWORD_LENGTH = 8;
         // Variables
-        public static User LoggedUser { get; private set; } = null;
-        public static string ErrorMessage { get; private set; } = string.Empty;
+        public User LoggedUser { get; private set; } = null;
         // Registrace
-        public static bool RegisterUser(string username, string password, string confirmPassword)
+        public (bool success, string message) RegisterUser(string username, string password, string confirmPassword)
         {
             // Ověření zadaných údajů
             if (password != confirmPassword)
             {
-                ErrorMessage = "Passwords do not match.";
-                return false;
+                return (false, "Passwords do not match.");
             }
 
             if (ValidateUsername(username))
             {
-                ErrorMessage = "Username is allready used.";
-                return false;
+                return (false, "Username is allready used.");
             }
             
-            if (ValidatePassword(password))
+            (bool isPassValid, string errorMessage) = ValidatePassword(password);
+            if (!isPassValid)
             {
-                return false;
+                return (false, errorMessage);
             }
 
             // Vytvoření nového uživatele
             string hashedPassword = PasswordHasher.HashPassword(password);
             User newUser = new User(username, hashedPassword, "User", DateTime.Now);
 
-            //TODO: Uložení uživatele do databáze
+            //Uložení uživatele do databáze
+            _databaseManager.AddUser(newUser);
 
-            return true;
+            return (true, "Uživatel byl zaregistrován");
         }
         // Přihlášení
-        public static bool LoginUser(string username, string password)
+        public (bool success, string message) LoginUser(string username, string password)
         {
-            //TODO: Získat uživatele z databáze
-            List<User> usersFromDatabase = new List<User> { new User("admin", PasswordHasher.HashPassword("admin"), "Admin", DateTime.Now)};
+            // Získání uživatele z databáze
+            List<User> usersFromDatabase = _databaseManager.GetAllUsers();
             if (!usersFromDatabase.Any(u => u.Username == username && PasswordHasher.VerifyPassword(password, u.PasswordHash)))
             {
-                ErrorMessage = "Invalid username or password.";
-                return false;
+                return (false, "Invalid username or password");
             }
+
             LoggedUser = usersFromDatabase.First(u => u.Username == username);
-            return true;
+            return (true, "Uživatel byl přihlášen");
         }
         // Odhlášení
-        public static bool LogoutUser()
+        public (bool, string) LogoutUser()
         {
             if (LoggedUser != null)
             {
                 LoggedUser = null;
-                return true;
+                return (true, "User was logged out");
             }
             else
             {
-                ErrorMessage = "No user is currently logged in.";
-                return false;
+                return (false, "No user is currently logged in.");
             }
         }
         // Validace uživatelského jména
-        private static bool ValidateUsername(string username)
+        private bool ValidateUsername(string username)
         {
             //TODO: Získat uživatele z databáze
             List<User> users = new List<User>();
@@ -85,33 +89,29 @@ namespace SpravaUzivatelu
             return true;
         }
         // Validace hesla
-        private static bool ValidatePassword(string password)
+        private (bool, string) ValidatePassword(string password)
         {
             if (password.Length < MIN_PASSWORD_LENGTH)
             {
-                ErrorMessage = $"Password must be at least {MIN_PASSWORD_LENGTH} characters long.";
-                return false;
+                return (false, $"Password must be at least {MIN_PASSWORD_LENGTH} characters long.");
             }
 
             if (!password.Any(char.IsUpper))
             {
-                ErrorMessage = "Password must contain at least one uppercase letter.";
-                return false;
+                return (false, "Password must contain at least one uppercase letter.");
             }
 
             if (!password.Any(char.IsLower))
             {
-                ErrorMessage = "Password must contain at least one lowercase letter.";
-                return false;
+                return (false, "Password must contain at least one lowercase letter.");
             }
 
             if (!password.Any(char.IsDigit))
             {
-                ErrorMessage = "Password must contain at least one digit.";
-                return false;
+                return (false, "Password must contain at least one digit.");
             }
 
-            return true;
+            return (true, "Password is valid");
         }
     }
 }

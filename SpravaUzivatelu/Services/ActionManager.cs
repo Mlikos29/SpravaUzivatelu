@@ -1,117 +1,117 @@
-﻿//using SpravaUzivatelu.Model;
-//using SpravaUzivatelu;
-//using System.Data;
-//using System;
+﻿using SpravaUzivatelu.Model;
+using SpravaUzivatelu;
+using System.Data;
+using System;
 
-//public class ActionManager
-//{
-//    private User currentUser= null;
+public class ActionManager
+{
+    private User currentUser = null;
 
-//    // AKCE PRO VŠECHNY UŽIVATELE
-//    // Změna vlastního hesla
+    // AKCE PRO VŠECHNY UŽIVATELE
+    // Změna vlastního hesla
 
-//    public (bool success, string message) ChangeMyPassword(string oldPassword, string newPassword)
-//    {
-//        if (currentUser == null)
-//            return (false, "Nejste přihlášen");
+    public (bool success, string message) ChangeMyPassword(string oldPassword, string newPassword)
+    {
+        if (currentUser == null)
+            return (false, "Nejste přihlášen");
 
-//        return UserManager.ChangePassword(currentUser.Username, oldPassword, newPassword);
-//    }
+        return UserManager.ChangePassword(currentUser.Username, oldPassword, newPassword);
+    }
 
-//    // Zobrazení vlastního profilu
+    // Zobrazení vlastního profilu
 
-//    public User ViewMyProfile()
-//    {
-//        if (currentUser == null)
-//            return null;
+    public User ViewMyProfile()
+    {
+        if (currentUser == null)
+            return null;
 
-//        DatabaseManager.LogEvent(currentUser.Username, "ZOBRAZENÍ_PROFILU", "Uživatel zobrazil svůj profil");
-//        return currentUser;
-//    }
+        DatabaseManager.LogEvent(currentUser.Username, "ZOBRAZENÍ_PROFILU", "Uživatel zobrazil svůj profil");
+        return currentUser;
+    }
 
-//    // AKCE POUZE PRO ADMINA
+    // AKCE POUZE PRO ADMINA
 
-//    // Zobrazení všech uživatelů
+    // Zobrazení všech uživatelů
 
-//    public DataTable ViewAllUsers()
-//    {
-//        if (currentUser?.Role != "Admin")
-//        {
-//            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
-//                "NEPOVOLENÝ_PŘÍSTUP", "Pokus o zobrazení všech uživatelů");
-//            return null;
-//        }
+    public DataTable ViewAllUsers()
+    {
+        if (currentUser?.Role != "Admin")
+        {
+            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
+                "NEPOVOLENÝ_PŘÍSTUP", "Pokus o zobrazení všech uživatelů");
+            return null;
+        }
 
-//        DatabaseManager.LogEvent(currentUser.Username, "ZOBRAZENÍ_UŽIVATELŮ",
-//            "Admin zobrazil seznam všech uživatelů");
+        DatabaseManager.LogEvent(currentUser.Username, "ZOBRAZENÍ_UŽIVATELŮ",
+            "Admin zobrazil seznam všech uživatelů");
 
-//        try
-//        {
-//            return UserManager.GetAllUsersForAdmin();
-//        }
-//        catch (Exception)
-//        {
-//            return null;
-//        }
-//    }
+        try
+        {
+            return UserManager.GetAllUsersForAdmin();
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
 
-//    // Smazání uživatele
+    // Smazání uživatele
 
-//    public (bool success, string message) DeleteUser(string username)
-//    {
-//        if (currentUser?.Role != "Admin")
-//        {
-//            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
-//                "NEPOVOLENÝ_PŘÍSTUP", $"Pokus o smazání uživatele {username}");
-//            return (false, "Nemáte oprávnění k této akci");
-//        }
+    public (bool success, string message) DeleteUser(string username)
+    {
+        if (currentUser?.Role != "Admin")
+        {
+            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
+                "NEPOVOLENÝ_PŘÍSTUP", $"Pokus o smazání uživatele {username}");
+            return (false, "Nemáte oprávnění k této akci");
+        }
 
-//        return UserManager.DeleteUser(username);
-//    }
+        return UserManager.DeleteUser(username);
+    }
 
-//    // Zobrazení logů
-//    public DataTable ViewLogs()
-//    {
-//        if (currentUser?.Role != "Admin")
-//        {
-//            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
-//                "NEPOVOLENÝ_PŘÍSTUP", "Pokus o zobrazení logů");
-//            return null;
-//        }
+    // Zobrazení logů
+    public DataTable ViewLogs()
+    {
+        if (currentUser?.Role != "Admin")
+        {
+            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
+                "NEPOVOLENÝ_PŘÍSTUP", "Pokus o zobrazení logů");
+            return null;
+        }
 
-//        DatabaseManager.LogEvent(currentUser.Username, "ZOBRAZENÍ_LOGŮ",
-//            "Admin zobrazil logy");
+        DatabaseManager.LogEvent(currentUser.Username, "ZOBRAZENÍ_LOGŮ",
+            "Admin zobrazil logy");
 
-//        try
-//        {
-//            return DatabaseManager.GetLogsAsDataTable();
-//        }
-//        catch (Exception)
-//        {
-//            return null;
-//        }
-//    }
+        try
+        {
+            return DatabaseManager.GetLogsAsDataTable();
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
 
 
-//    // Vytvoření nového admina (ručně)
-//    public (bool success, string message) CreateNewAdmin(string username, string password)
-//    {
-//        if (currentUser?.Role != "Admin")
-//        {
-//            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
-//                "NEPOVOLENÝ_PŘÍSTUP", "Pokus o vytvoření admina");
-//            return (false, "Nemáte oprávnění k této akci");
-//        }
+    // Vytvoření nového admina (ručně)
+    public (bool success, string message) CreateNewAdmin(string username, string password)
+    {
+        if (currentUser?.Role != "Admin")
+        {
+            DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
+                "NEPOVOLENÝ_PŘÍSTUP", "Pokus o vytvoření admina");
+            return (false, "Nemáte oprávnění k této akci");
+        }
 
-//        var result = UserManager.CreateAdmin(username, password);
+        var result = UserManager.CreateAdmin(username, password);
 
-//        if (result)
-//        {
-//            DatabaseManager.LogEvent(currentUser.Username, "VYTVOŘENÍ_ADMINA",
-//                $"Vytvořen nový admin: {username}");
-//            return (true, $"Administrátor {username} byl vytvořen");
-//        }
+        if (result)
+        {
+            DatabaseManager.LogEvent(currentUser.Username, "VYTVOŘENÍ_ADMINA",
+                $"Vytvořen nový admin: {username}");
+            return (true, $"Administrátor {username} byl vytvořen");
+        }
 
-//        return (false, "Nepodařilo se vytvořit administrátora");
-//    }
-//}
+        return (false, "Nepodařilo se vytvořit administrátora");
+    }
+}

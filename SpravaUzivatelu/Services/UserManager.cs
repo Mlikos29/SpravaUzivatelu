@@ -164,7 +164,7 @@ namespace SpravaUzivatelu
             return (true, "Password is valid");
         }
 
-        private (object, bool, string) GetLogs(bool asDataTable)
+        public (object, bool, string) GetLogs(bool asDataTable)
         {
             if (asDataTable)
             {

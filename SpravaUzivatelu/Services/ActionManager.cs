@@ -3,6 +3,7 @@ using SpravaUzivatelu.DbContext;
 using SpravaUzivatelu.Model;
 using System;
 using System.Data;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 
 public class ActionManager
@@ -54,7 +55,7 @@ public class ActionManager
 
         try
         {
-            return UserManager.GetAllUsersForAdmin();
+            return _userManager.GetAllUsersForAdmin();
         }
         catch (Exception)
         {
@@ -73,17 +74,17 @@ public class ActionManager
             return (false, "Nemáte oprávnění k této akci");
         }
 
-        return UserManager.DeleteUser(username);
+        return _userManager.DeleteUser(username);
     }
 
     // Zobrazení logů
-    public DataTable ViewLogs()
+    public (object, bool, string) ViewLogs(bool asDataTable)
     {
         if (currentUser?.Role != "Admin")
         {
             DatabaseManager.LogEvent(currentUser?.Username ?? "Unknown",
                 "NEPOVOLENÝ_PŘÍSTUP", "Pokus o zobrazení logů");
-            return null;
+            return (null, false, "Nepovolený přístup");
         }
 
         DatabaseManager.LogEvent(currentUser.Username, "ZOBRAZENÍ_LOGŮ",
@@ -91,11 +92,12 @@ public class ActionManager
 
         try
         {
-            return DatabaseManager.GetLogsAsDataTable();
+            var dataobject = _userManager.GetLogs(asDataTable);
+            return dataobject; 
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return null;
+            return (null, false, $"Chyba při načítání logů: {ex.Message}"); ;
         }
     }
 

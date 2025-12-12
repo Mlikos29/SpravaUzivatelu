@@ -131,7 +131,7 @@ public class ActionManager
                 $"Vytvořen nový user: {username}");
             return (true, $"Uživatel {username} byl vytvořen");
         }
-        
+        return (false, "Nepodařilo se vytvořit uživatele");        
 
     }
 }

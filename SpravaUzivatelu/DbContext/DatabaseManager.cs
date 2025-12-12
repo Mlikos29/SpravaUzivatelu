@@ -337,9 +337,9 @@ namespace SpravaUzivatelu.DbContext
                     connection.Open();
 
                     string sql = @"
-                SELECT Timestamp, Username, Action, Details
-                FROM Logs 
-                ORDER BY Timestamp DESC";
+                    SELECT Timestamp, Username, Action, Details
+                    FROM Logs 
+                    ORDER BY Timestamp DESC";
 
                     using (var adapter = new SQLiteDataAdapter(sql, connection))
                     {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using SpravaUzivatelu.DbContext;
+using System.Threading;
 
 namespace SpravaUzivatelu
 {
@@ -135,7 +136,8 @@ namespace SpravaUzivatelu
             }
 
             return true;
-        }
+        } 
+
         // Validace hesla
         private (bool, string) ValidatePassword(string password)
         {
@@ -160,6 +162,20 @@ namespace SpravaUzivatelu
             }
 
             return (true, "Password is valid");
+        }
+
+        private (object, bool, string) GetLogs(bool asDataTable)
+        {
+            if (asDataTable)
+            {
+                var dt = _databaseManager.GetAllUsersAsDataTable();
+                return (dt, true, "Logs was successfully read"); 
+            }
+            else
+            {
+                var list = _databaseManager.GetLogs();
+                return (list, true, "Logs was successfully read");
+            }
         }
     }
 }

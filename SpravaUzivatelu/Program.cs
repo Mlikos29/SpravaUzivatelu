@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SpravaUzivatelu.DbContext;
 
 namespace SpravaUzivatelu
 {
-    internal static class Program
+    public static class Program
     {
         /// <summary>
         /// Hlavní vstupní bod aplikace.
@@ -14,8 +15,9 @@ namespace SpravaUzivatelu
         [STAThread]
         static void Main()
         {
+            
             Application.EnableVisualStyles();
-            DatabaseManager.InitializeDatabase();
+            DatabaseManager db = new DatabaseManager();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
         }

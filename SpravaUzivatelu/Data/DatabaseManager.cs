@@ -22,7 +22,7 @@ namespace SpravaUzivatelu.DbContext
 
                     // Vytvoření tabulky Users
                     string createUsersTable = @"
-                CREATE TABLE IF NOT EXISTS Users (
+                    CREATE TABLE IF NOT EXISTS Users (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Username TEXT UNIQUE NOT NULL,
                     PasswordHash TEXT NOT NULL,
@@ -32,7 +32,7 @@ namespace SpravaUzivatelu.DbContext
 
                     // Vytvoření tabulky Logs (pro bonus)
                     string createLogsTable = @"
-                CREATE TABLE IF NOT EXISTS Logs (
+                    CREATE TABLE IF NOT EXISTS Logs (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Timestamp TEXT NOT NULL,
                     Username TEXT NOT NULL,

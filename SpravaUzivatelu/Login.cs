@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpravaUzivatelu.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -58,13 +59,7 @@ namespace SpravaUzivatelu
 
             LabelErrorMessage.Text = "";
 
-            OpenForm(new UserView());
-        }
-        private void OpenForm(Form form)
-        {
-            this.Hide();
-            form.FormClosed += (s, args) => this.Close(); // hned co se novej otevře tak se starej zavře
-            form.Show();
+            FormHelper.OpenForm(this, new UserView());
         }
         private void SwitchToLoginMode()
         {

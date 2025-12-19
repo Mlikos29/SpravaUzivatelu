@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpravaUzivatelu.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace SpravaUzivatelu
         public AdminView()
         {
             InitializeComponent();
+        }
+
+        private void User_View_Button_Click(object sender, EventArgs e)
+        {
+            FormHelper.OpenForm(this, new UserView());
         }
     }
 }

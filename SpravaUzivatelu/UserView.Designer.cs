@@ -32,15 +32,16 @@
             this.Change_Password_Button = new System.Windows.Forms.Button();
             this.View_Profile_Button = new System.Windows.Forms.Button();
             this.Change_Password_Box = new System.Windows.Forms.GroupBox();
+            this.ErrorMessage_Label = new System.Windows.Forms.Label();
             this.Change_Password_Confirm = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.New_Password_Text = new System.Windows.Forms.TextBox();
             this.Old_Password_Text = new System.Windows.Forms.TextBox();
-            this.ErrorMessage_Label = new System.Windows.Forms.Label();
             this.View_Profile_Box = new System.Windows.Forms.GroupBox();
-            this.Username_Label = new System.Windows.Forms.Label();
             this.Role_Label = new System.Windows.Forms.Label();
+            this.Username_Label = new System.Windows.Forms.Label();
+            this.To_Admin_Button = new System.Windows.Forms.Button();
             this.Change_Password_Box.SuspendLayout();
             this.View_Profile_Box.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +92,17 @@
             this.Change_Password_Box.TabIndex = 3;
             this.Change_Password_Box.TabStop = false;
             // 
+            // ErrorMessage_Label
+            // 
+            this.ErrorMessage_Label.AutoSize = true;
+            this.ErrorMessage_Label.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ErrorMessage_Label.ForeColor = System.Drawing.Color.Red;
+            this.ErrorMessage_Label.Location = new System.Drawing.Point(6, 103);
+            this.ErrorMessage_Label.Name = "ErrorMessage_Label";
+            this.ErrorMessage_Label.Size = new System.Drawing.Size(37, 13);
+            this.ErrorMessage_Label.TabIndex = 5;
+            this.ErrorMessage_Label.Text = "Error";
+            // 
             // Change_Password_Confirm
             // 
             this.Change_Password_Confirm.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -140,17 +152,6 @@
             this.Old_Password_Text.Size = new System.Drawing.Size(130, 20);
             this.Old_Password_Text.TabIndex = 0;
             // 
-            // ErrorMessage_Label
-            // 
-            this.ErrorMessage_Label.AutoSize = true;
-            this.ErrorMessage_Label.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ErrorMessage_Label.ForeColor = System.Drawing.Color.Red;
-            this.ErrorMessage_Label.Location = new System.Drawing.Point(6, 103);
-            this.ErrorMessage_Label.Name = "ErrorMessage_Label";
-            this.ErrorMessage_Label.Size = new System.Drawing.Size(37, 13);
-            this.ErrorMessage_Label.TabIndex = 5;
-            this.ErrorMessage_Label.Text = "Error";
-            // 
             // View_Profile_Box
             // 
             this.View_Profile_Box.Controls.Add(this.Role_Label);
@@ -160,16 +161,6 @@
             this.View_Profile_Box.Size = new System.Drawing.Size(140, 91);
             this.View_Profile_Box.TabIndex = 4;
             this.View_Profile_Box.TabStop = false;
-            // 
-            // Username_Label
-            // 
-            this.Username_Label.AutoSize = true;
-            this.Username_Label.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Username_Label.Location = new System.Drawing.Point(7, 20);
-            this.Username_Label.Name = "Username_Label";
-            this.Username_Label.Size = new System.Drawing.Size(31, 13);
-            this.Username_Label.TabIndex = 0;
-            this.Username_Label.Text = "User";
             // 
             // Role_Label
             // 
@@ -181,17 +172,39 @@
             this.Role_Label.TabIndex = 1;
             this.Role_Label.Text = "Role";
             // 
+            // Username_Label
+            // 
+            this.Username_Label.AutoSize = true;
+            this.Username_Label.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Username_Label.Location = new System.Drawing.Point(7, 20);
+            this.Username_Label.Name = "Username_Label";
+            this.Username_Label.Size = new System.Drawing.Size(31, 13);
+            this.Username_Label.TabIndex = 0;
+            this.Username_Label.Text = "User";
+            // 
+            // To_Admin_Button
+            // 
+            this.To_Admin_Button.Location = new System.Drawing.Point(713, 415);
+            this.To_Admin_Button.Name = "To_Admin_Button";
+            this.To_Admin_Button.Size = new System.Drawing.Size(75, 23);
+            this.To_Admin_Button.TabIndex = 5;
+            this.To_Admin_Button.Text = "Admin View";
+            this.To_Admin_Button.UseVisualStyleBackColor = true;
+            this.To_Admin_Button.Click += new System.EventHandler(this.To_Admin_Button_Click);
+            // 
             // UserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.To_Admin_Button);
             this.Controls.Add(this.View_Profile_Box);
             this.Controls.Add(this.Change_Password_Box);
             this.Controls.Add(this.View_Profile_Button);
             this.Controls.Add(this.Change_Password_Button);
             this.Controls.Add(this.label1);
             this.Name = "UserView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserView";
             this.Change_Password_Box.ResumeLayout(false);
             this.Change_Password_Box.PerformLayout();
@@ -217,5 +230,6 @@
         private System.Windows.Forms.GroupBox View_Profile_Box;
         private System.Windows.Forms.Label Role_Label;
         private System.Windows.Forms.Label Username_Label;
+        private System.Windows.Forms.Button To_Admin_Button;
     }
 }

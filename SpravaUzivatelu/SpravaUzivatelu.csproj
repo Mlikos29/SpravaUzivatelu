@@ -71,6 +71,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FormHelper.cs" />
     <Compile Include="Services\UserManager.cs" />
     <Compile Include="UserView.cs">
       <SubType>Form</SubType>

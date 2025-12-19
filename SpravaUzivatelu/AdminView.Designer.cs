@@ -30,6 +30,7 @@
         {
             this.LabelAdminView = new System.Windows.Forms.Label();
             this.ButtonShowUsers = new System.Windows.Forms.Button();
+            this.User_View_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LabelAdminView
@@ -51,14 +52,26 @@
             this.ButtonShowUsers.Text = "Show Users";
             this.ButtonShowUsers.UseVisualStyleBackColor = true;
             // 
+            // User_View_Button
+            // 
+            this.User_View_Button.Location = new System.Drawing.Point(713, 415);
+            this.User_View_Button.Name = "User_View_Button";
+            this.User_View_Button.Size = new System.Drawing.Size(75, 23);
+            this.User_View_Button.TabIndex = 2;
+            this.User_View_Button.Text = "User View";
+            this.User_View_Button.UseVisualStyleBackColor = true;
+            this.User_View_Button.Click += new System.EventHandler(this.User_View_Button_Click);
+            // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.User_View_Button);
             this.Controls.Add(this.ButtonShowUsers);
             this.Controls.Add(this.LabelAdminView);
             this.Name = "AdminView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminView";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -69,5 +82,6 @@
 
         private System.Windows.Forms.Label LabelAdminView;
         private System.Windows.Forms.Button ButtonShowUsers;
+        private System.Windows.Forms.Button User_View_Button;
     }
 }

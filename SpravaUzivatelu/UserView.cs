@@ -1,4 +1,5 @@
 ﻿using SpravaUzivatelu.Model;
+using SpravaUzivatelu.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,6 @@ namespace SpravaUzivatelu
             View_Profile_Box.Visible = false;
             actionmanager = new ActionManager();
             ErrorMessage_Label.Text = "";
-
         }
 
         private void View_Profile_Button_Click(object sender, EventArgs e)
@@ -50,9 +50,6 @@ namespace SpravaUzivatelu
                 Username_Label.Text = ("Username: Nenačteno");
                 Role_Label.Text = ("Role: Nenačteno");
             }
-
-
-
         }
 
         private void Change_Password_Button_Click(object sender, EventArgs e)
@@ -79,6 +76,11 @@ namespace SpravaUzivatelu
             {
                 Change_Password_Box.Visible = false;
             }
+        }
+
+        private void To_Admin_Button_Click(object sender, EventArgs e)
+        {
+            FormHelper.OpenForm(this, new AdminView());
         }
     }
 }

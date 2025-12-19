@@ -17,7 +17,7 @@ namespace SpravaUzivatelu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UserView());
+            Application.Run(new Login());
         }
     }
 }

@@ -24,6 +24,10 @@ namespace SpravaUzivatelu
             View_Profile_Box.Visible = false;
             actionmanager = ActionManager.Instance;
             ErrorMessage_Label.Text = "";
+            User user = actionmanager.ViewMyProfile();
+            To_Admin_Button.Visible = false;
+            if (user.Role == "Admin")
+                To_Admin_Button.Visible = true;
         }
 
         private void View_Profile_Button_Click(object sender, EventArgs e)

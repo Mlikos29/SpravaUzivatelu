@@ -168,7 +168,7 @@ namespace SpravaUzivatelu
         {
             if (asDataTable)
             {
-                var dt = _databaseManager.GetAllUsersAsDataTable();
+                var dt = _databaseManager.GetLogsAsDataTable();
                 return (dt, true, "Logs was successfully read");
             }
             else

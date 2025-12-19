@@ -28,9 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LabelAdminView = new System.Windows.Forms.Label();
             this.ButtonShowUsers = new System.Windows.Forms.Button();
             this.User_View_Button = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.Show_Logs_Button = new System.Windows.Forms.Button();
+            this.Create_Button = new System.Windows.Forms.Button();
+            this.Create_User_Radio = new System.Windows.Forms.RadioButton();
+            this.Create_Admin_Radio = new System.Windows.Forms.RadioButton();
+            this.Delete_Button = new System.Windows.Forms.Button();
+            this.Delete_Username_Text = new System.Windows.Forms.TextBox();
+            this.databaseManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseManagerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelAdminView
@@ -45,15 +63,18 @@
             // 
             // ButtonShowUsers
             // 
-            this.ButtonShowUsers.Location = new System.Drawing.Point(83, 98);
+            this.ButtonShowUsers.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ButtonShowUsers.Location = new System.Drawing.Point(12, 8);
             this.ButtonShowUsers.Name = "ButtonShowUsers";
             this.ButtonShowUsers.Size = new System.Drawing.Size(136, 54);
             this.ButtonShowUsers.TabIndex = 1;
             this.ButtonShowUsers.Text = "Show Users";
             this.ButtonShowUsers.UseVisualStyleBackColor = true;
+            this.ButtonShowUsers.Click += new System.EventHandler(this.ButtonShowUsers_Click);
             // 
             // User_View_Button
             // 
+            this.User_View_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.User_View_Button.Location = new System.Drawing.Point(713, 415);
             this.User_View_Button.Name = "User_View_Button";
             this.User_View_Button.Size = new System.Drawing.Size(75, 23);
@@ -62,17 +83,168 @@
             this.User_View_Button.UseVisualStyleBackColor = true;
             this.User_View_Button.Click += new System.EventHandler(this.User_View_Button_Click);
             // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(12, 167);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(552, 271);
+            this.dataGridView.TabIndex = 3;
+            // 
+            // Show_Logs_Button
+            // 
+            this.Show_Logs_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Show_Logs_Button.Location = new System.Drawing.Point(154, 8);
+            this.Show_Logs_Button.Name = "Show_Logs_Button";
+            this.Show_Logs_Button.Size = new System.Drawing.Size(136, 54);
+            this.Show_Logs_Button.TabIndex = 4;
+            this.Show_Logs_Button.Text = "Show logs";
+            this.Show_Logs_Button.UseVisualStyleBackColor = true;
+            this.Show_Logs_Button.Click += new System.EventHandler(this.Show_Logs_Button_Click);
+            // 
+            // Create_Button
+            // 
+            this.Create_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Create_Button.Location = new System.Drawing.Point(597, 290);
+            this.Create_Button.Name = "Create_Button";
+            this.Create_Button.Size = new System.Drawing.Size(80, 37);
+            this.Create_Button.TabIndex = 5;
+            this.Create_Button.Text = "Create";
+            this.Create_Button.UseVisualStyleBackColor = true;
+            this.Create_Button.Click += new System.EventHandler(this.Create_Button_Click);
+            // 
+            // Create_User_Radio
+            // 
+            this.Create_User_Radio.AutoSize = true;
+            this.Create_User_Radio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Create_User_Radio.Location = new System.Drawing.Point(597, 115);
+            this.Create_User_Radio.Name = "Create_User_Radio";
+            this.Create_User_Radio.Size = new System.Drawing.Size(91, 17);
+            this.Create_User_Radio.TabIndex = 6;
+            this.Create_User_Radio.TabStop = true;
+            this.Create_User_Radio.Text = "Create User";
+            this.Create_User_Radio.UseVisualStyleBackColor = true;
+            this.Create_User_Radio.CheckedChanged += new System.EventHandler(this.Create_User_Radio_CheckedChanged);
+            // 
+            // Create_Admin_Radio
+            // 
+            this.Create_Admin_Radio.AutoSize = true;
+            this.Create_Admin_Radio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Create_Admin_Radio.Location = new System.Drawing.Point(597, 139);
+            this.Create_Admin_Radio.Name = "Create_Admin_Radio";
+            this.Create_Admin_Radio.Size = new System.Drawing.Size(97, 17);
+            this.Create_Admin_Radio.TabIndex = 7;
+            this.Create_Admin_Radio.TabStop = true;
+            this.Create_Admin_Radio.Text = "Create Admin";
+            this.Create_Admin_Radio.UseVisualStyleBackColor = true;
+            this.Create_Admin_Radio.CheckedChanged += new System.EventHandler(this.Create_Admin_Radio_CheckedChanged);
+            // 
+            // Delete_Button
+            // 
+            this.Delete_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Delete_Button.Location = new System.Drawing.Point(600, 368);
+            this.Delete_Button.Name = "Delete_Button";
+            this.Delete_Button.Size = new System.Drawing.Size(75, 23);
+            this.Delete_Button.TabIndex = 8;
+            this.Delete_Button.Text = "Delete";
+            this.Delete_Button.UseVisualStyleBackColor = true;
+            // 
+            // Delete_Username_Text
+            // 
+            this.Delete_Username_Text.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Delete_Username_Text.Location = new System.Drawing.Point(600, 346);
+            this.Delete_Username_Text.Name = "Delete_Username_Text";
+            this.Delete_Username_Text.Size = new System.Drawing.Size(116, 20);
+            this.Delete_Username_Text.TabIndex = 10;
+            // 
+            // databaseManagerBindingSource
+            // 
+            this.databaseManagerBindingSource.DataSource = typeof(SpravaUzivatelu.DbContext.DatabaseManager);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(597, 182);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(119, 20);
+            this.textBox1.TabIndex = 11;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(597, 222);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(119, 20);
+            this.textBox2.TabIndex = 12;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(597, 264);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(119, 20);
+            this.textBox3.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(597, 166);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(597, 205);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "label2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(597, 245);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "label3";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(597, 330);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Username";
+            // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Delete_Username_Text);
+            this.Controls.Add(this.Delete_Button);
+            this.Controls.Add(this.Create_Admin_Radio);
+            this.Controls.Add(this.Create_User_Radio);
+            this.Controls.Add(this.Create_Button);
+            this.Controls.Add(this.Show_Logs_Button);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.User_View_Button);
             this.Controls.Add(this.ButtonShowUsers);
             this.Controls.Add(this.LabelAdminView);
             this.Name = "AdminView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminView";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseManagerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -83,5 +255,20 @@
         private System.Windows.Forms.Label LabelAdminView;
         private System.Windows.Forms.Button ButtonShowUsers;
         private System.Windows.Forms.Button User_View_Button;
+        private System.Windows.Forms.BindingSource databaseManagerBindingSource;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Button Show_Logs_Button;
+        private System.Windows.Forms.Button Create_Button;
+        private System.Windows.Forms.RadioButton Create_User_Radio;
+        private System.Windows.Forms.RadioButton Create_Admin_Radio;
+        private System.Windows.Forms.Button Delete_Button;
+        private System.Windows.Forms.TextBox Delete_Username_Text;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -71,7 +71,7 @@ namespace SpravaUzivatelu.DbContext
         // Vytvoří výchozího admina (pro testování)
         private void CreateDefaultAdmin()
         {
-            string adminHash = HashPassword("admin123");
+            string adminHash = PasswordHasher.HashPassword("Admin12345");
 
             using (var connection = new SQLiteConnection(ConnectionString))
             {
@@ -342,7 +342,7 @@ namespace SpravaUzivatelu.DbContext
                     connection.Open();
 
                     string sql = @"
-                    SELECT Timestamp, Username, Action, Details
+                    SELECT Id, Timestamp, Username, Action, Details
                     FROM Logs 
                     ORDER BY Timestamp DESC";
 

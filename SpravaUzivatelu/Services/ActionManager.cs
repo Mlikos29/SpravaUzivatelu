@@ -8,12 +8,19 @@ using System.Windows.Forms;
 
 public class ActionManager
 {
-    UserManager _userManager;
-    private User currentUser = null;
-    public ActionManager()
+    private static readonly Lazy<ActionManager> lazyInstance =
+        new Lazy<ActionManager>(() => new ActionManager());
+    public static ActionManager Instance => lazyInstance.Value;
+    private readonly UserManager _userManager;
+    private User currentUser;
+    private ActionManager()
     {
-        _userManager = new UserManager();
+        _userManager = UserManager.Instance;
+        currentUser = null;
     }
+
+    // Vlastnost pro získání aktuálního uživatele
+    public User CurrentUser => currentUser;
 
     // AKCE PRO VŠECHNY UŽIVATELE
     // Změna vlastního hesla

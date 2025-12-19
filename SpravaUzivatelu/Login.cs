@@ -13,7 +13,6 @@ namespace SpravaUzivatelu
     public partial class Login : Form
     {
         private ActionManager actionManager;
-        private UserManager userManager;
         public Login()
         {
             InitializeComponent();
@@ -21,8 +20,7 @@ namespace SpravaUzivatelu
             LinkToRegistration.Text = "Register";
             ConfirmPasswordTextBox.Visible = false;
             LabelConfirmPassword.Visible = false;
-            actionManager = new ActionManager();
-            userManager = new UserManager();
+            actionManager = ActionManager.Instance;
         }
         private void LoginButton_Click(object sender, EventArgs e)
         {
@@ -48,7 +46,7 @@ namespace SpravaUzivatelu
         }
         private void LoginUser()
         {
-            (bool isOk, string ErrorMessage) = userManager.LoginUser(UsernameTextBox.Text, PasswordTextBox.Text);
+            (bool isOk, string ErrorMessage) = actionManager.LoginUser(UsernameTextBox.Text, PasswordTextBox.Text);
 
             if (!isOk)
             {

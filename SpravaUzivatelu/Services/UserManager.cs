@@ -13,10 +13,13 @@ namespace SpravaUzivatelu
 {
     public class UserManager
     {
-        private DatabaseManager _databaseManager;
-        public UserManager()
+        private static readonly Lazy<UserManager> lazyInstance =
+         new Lazy<UserManager>(() => new UserManager());
+        public static UserManager Instance => lazyInstance.Value;
+        private readonly DatabaseManager _databaseManager;
+        private UserManager()
         {
-            _databaseManager = new DatabaseManager();
+            _databaseManager = DatabaseManager.Instance;
         }
         // Settings
         private int MIN_PASSWORD_LENGTH = 8;

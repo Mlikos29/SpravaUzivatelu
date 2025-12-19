@@ -8,9 +8,14 @@ namespace SpravaUzivatelu.DbContext
 {
     public class DatabaseManager
     {
+        private static readonly Lazy<DatabaseManager> lazyInstance =
+            new Lazy<DatabaseManager>(() => new DatabaseManager());
         private static readonly string ConnectionString = "Data Source=users.db;Version=3;";
-
-        //// Inicializuje databázi a vytvoří tabulky pokud neexistují
+        public static DatabaseManager Instance => lazyInstance.Value;
+        private DatabaseManager()
+        {
+            InitializeDatabase();
+        }
 
         public void InitializeDatabase()
         {

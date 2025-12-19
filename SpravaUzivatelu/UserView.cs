@@ -21,7 +21,7 @@ namespace SpravaUzivatelu
             InitializeComponent();
             Change_Password_Box.Visible = false;
             View_Profile_Box.Visible = false;
-            actionmanager = new ActionManager();
+            actionmanager = ActionManager.Instance;
             ErrorMessage_Label.Text = "";
 
         }

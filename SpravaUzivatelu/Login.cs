@@ -28,15 +28,11 @@ namespace SpravaUzivatelu
         {
             if (LoginLabel.Text == "Login")
             {
-                RegistrationUser();
+                LoginUser();
             }
             else if (LoginLabel.Text == "Register")
             {
-                LoginUser();
-            }
-            else
-            {
-                LabelErrorMessage.Text = "Unknown action.";
+                RegistrationUser();
             }
         }
         private void RegistrationUser()

@@ -30,15 +30,15 @@
         {
             this.LoginContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.LoginLabel = new System.Windows.Forms.Label();
+            this.LabelUsername = new System.Windows.Forms.Label();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.LabelPassword = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.LabelConfirmPassword = new System.Windows.Forms.Label();
             this.ConfirmPasswordTextBox = new System.Windows.Forms.TextBox();
             this.LabelErrorMessage = new System.Windows.Forms.Label();
             this.LoginButton = new System.Windows.Forms.Button();
             this.LinkToRegistration = new System.Windows.Forms.LinkLabel();
-            this.LabelUsername = new System.Windows.Forms.Label();
-            this.LabelPassword = new System.Windows.Forms.Label();
-            this.LabelConfirmPassword = new System.Windows.Forms.Label();
             this.LoginContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,16 @@
             this.LoginLabel.Text = "Login";
             this.LoginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // LabelUsername
+            // 
+            this.LabelUsername.AutoSize = true;
+            this.LabelUsername.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LabelUsername.Location = new System.Drawing.Point(3, 22);
+            this.LabelUsername.Name = "LabelUsername";
+            this.LabelUsername.Size = new System.Drawing.Size(63, 14);
+            this.LabelUsername.TabIndex = 7;
+            this.LabelUsername.Text = "Username";
+            // 
             // UsernameTextBox
             // 
             this.UsernameTextBox.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -80,6 +90,16 @@
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(230, 25);
             this.UsernameTextBox.TabIndex = 1;
+            // 
+            // LabelPassword
+            // 
+            this.LabelPassword.AutoSize = true;
+            this.LabelPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LabelPassword.Location = new System.Drawing.Point(3, 67);
+            this.LabelPassword.Name = "LabelPassword";
+            this.LabelPassword.Size = new System.Drawing.Size(63, 14);
+            this.LabelPassword.TabIndex = 8;
+            this.LabelPassword.Text = "Password";
             // 
             // PasswordTextBox
             // 
@@ -90,6 +110,16 @@
             this.PasswordTextBox.Size = new System.Drawing.Size(230, 25);
             this.PasswordTextBox.TabIndex = 2;
             // 
+            // LabelConfirmPassword
+            // 
+            this.LabelConfirmPassword.AutoSize = true;
+            this.LabelConfirmPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.LabelConfirmPassword.Location = new System.Drawing.Point(3, 112);
+            this.LabelConfirmPassword.Name = "LabelConfirmPassword";
+            this.LabelConfirmPassword.Size = new System.Drawing.Size(119, 14);
+            this.LabelConfirmPassword.TabIndex = 9;
+            this.LabelConfirmPassword.Text = "Confirm Password";
+            // 
             // ConfirmPasswordTextBox
             // 
             this.ConfirmPasswordTextBox.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -97,7 +127,7 @@
             this.ConfirmPasswordTextBox.Name = "ConfirmPasswordTextBox";
             this.ConfirmPasswordTextBox.PasswordChar = '*';
             this.ConfirmPasswordTextBox.Size = new System.Drawing.Size(230, 25);
-            this.ConfirmPasswordTextBox.TabIndex = 5;
+            this.ConfirmPasswordTextBox.TabIndex = 3;
             // 
             // LabelErrorMessage
             // 
@@ -114,7 +144,7 @@
             this.LoginButton.Location = new System.Drawing.Point(3, 173);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(230, 39);
-            this.LoginButton.TabIndex = 3;
+            this.LoginButton.TabIndex = 4;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
@@ -128,36 +158,6 @@
             this.LinkToRegistration.Size = new System.Drawing.Size(0, 19);
             this.LinkToRegistration.TabIndex = 4;
             this.LinkToRegistration.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkToRegistration_LinkClicked);
-            // 
-            // LabelUsername
-            // 
-            this.LabelUsername.AutoSize = true;
-            this.LabelUsername.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LabelUsername.Location = new System.Drawing.Point(3, 22);
-            this.LabelUsername.Name = "LabelUsername";
-            this.LabelUsername.Size = new System.Drawing.Size(63, 14);
-            this.LabelUsername.TabIndex = 7;
-            this.LabelUsername.Text = "Username";
-            // 
-            // LabelPassword
-            // 
-            this.LabelPassword.AutoSize = true;
-            this.LabelPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LabelPassword.Location = new System.Drawing.Point(3, 67);
-            this.LabelPassword.Name = "LabelPassword";
-            this.LabelPassword.Size = new System.Drawing.Size(63, 14);
-            this.LabelPassword.TabIndex = 8;
-            this.LabelPassword.Text = "Password";
-            // 
-            // LabelConfirmPassword
-            // 
-            this.LabelConfirmPassword.AutoSize = true;
-            this.LabelConfirmPassword.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LabelConfirmPassword.Location = new System.Drawing.Point(3, 112);
-            this.LabelConfirmPassword.Name = "LabelConfirmPassword";
-            this.LabelConfirmPassword.Size = new System.Drawing.Size(119, 14);
-            this.LabelConfirmPassword.TabIndex = 9;
-            this.LabelConfirmPassword.Text = "Confirm Password";
             // 
             // Login
             // 

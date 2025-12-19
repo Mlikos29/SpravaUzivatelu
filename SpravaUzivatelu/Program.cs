@@ -18,7 +18,7 @@ namespace SpravaUzivatelu
             Application.EnableVisualStyles();
             DatabaseManager db = new DatabaseManager();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new UserView());
         }
     }
 }

@@ -139,4 +139,19 @@ public class ActionManager
 
         return (true, $"Uživatel {username} byl vytvořen");
     }
+    public (bool success, string message) LoginUser(string username, string password)
+    {
+        var (isOk, ErrorMessage) = _userManager.LoginUser(username, password);
+        if (!isOk)
+        {
+            return (false, ErrorMessage);
+        }
+        currentUser = _userManager.GetLoggedUser();
+        DatabaseManager.LogEvent(
+            currentUser.Username,
+            "PŘIHLÁŠENÍ",
+            "Uživatel se úspěšně přihlásil"
+        );
+        return (true, "Uživatel byl přihlášen");
+    }
 }

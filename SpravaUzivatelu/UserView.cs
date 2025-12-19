@@ -37,7 +37,7 @@ namespace SpravaUzivatelu
                 View_Profile_Box.Visible = false;
             }
             
-                User user = actionmanager.ViewMyProfile();
+            User user = actionmanager.ViewMyProfile();
             if (user != null)
             {
                 Username_Label.Text = ($"Username: {user.Username}");

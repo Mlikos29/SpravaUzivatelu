@@ -82,7 +82,7 @@ namespace SpravaUzivatelu
             }
         }
         // Vracení uživatele
-        private User GetLoggedUser()
+        public User GetLoggedUser()
         {
             return LoggedUser;
         }

@@ -128,9 +128,7 @@ namespace SpravaUzivatelu
         // Validace uživatelského jména
         private bool ValidateUsername(string username)
         {
-            //TODO: Získat uživatele z databáze
-            List<User> users = new List<User>();
-            if (users.Any(u => u.Username == username))
+            if (_databaseManager.UserExists(username))
             {
                 return false;
             }

@@ -17,12 +17,12 @@ namespace SpravaUzivatelu
         public Login()
         {
             InitializeComponent();
-
             LinkToRegistration.Text = "Register";
             ConfirmPasswordTextBox.Visible = false;
             LabelConfirmPassword.Visible = false;
             actionManager = ActionManager.Instance;
         }
+        // Login / Register Button
         private void LoginButton_Click(object sender, EventArgs e)
         {
             if (LoginLabel.Text == "Login")
@@ -34,6 +34,7 @@ namespace SpravaUzivatelu
                 RegistrationUser();
             }
         }
+        // Register
         private void RegistrationUser()
         {
             (bool isOk, string Errormessage) = actionManager.RegisterNewUser(UsernameTextBox.Text, PasswordTextBox.Text, ConfirmPasswordTextBox.Text);
@@ -45,6 +46,7 @@ namespace SpravaUzivatelu
             LabelErrorMessage.Text = "";
             SwitchToLoginMode();
         }
+        // Login
         private void LoginUser()
         {
             (bool isOk, string ErrorMessage) = actionManager.LoginUser(UsernameTextBox.Text, PasswordTextBox.Text);
@@ -59,12 +61,13 @@ namespace SpravaUzivatelu
 
             FormHelper.OpenForm(this, new UserView());
         }
+        // Switch to Login Mode after successful registration
         private void SwitchToLoginMode()
         {
             LinkToRegistration_LinkClicked(null, null);
         }
 
-        //Zmeny Textu (Login / Register)
+        // Text change after clicking the link
         private void LinkToRegistration_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (LoginLabel.Text == "Login")

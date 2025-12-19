@@ -24,12 +24,20 @@ namespace SpravaUzivatelu
             View_Profile_Box.Visible = false;
             actionmanager = ActionManager.Instance;
             ErrorMessage_Label.Text = "";
+
+            // Check if user is admin to show admin button
             User user = actionmanager.ViewMyProfile();
-            To_Admin_Button.Visible = false;
-            if (user.Role == "Admin")
+            if (user.Role != "Admin")
+            {
+                To_Admin_Button.Visible = false;
+            }
+            else
+            {
                 To_Admin_Button.Visible = true;
+            }
         }
 
+        // View Profile
         private void View_Profile_Button_Click(object sender, EventArgs e)
         {
             if (View_Profile_Box.Visible == false)
@@ -56,6 +64,7 @@ namespace SpravaUzivatelu
             }
         }
 
+        // Change Password
         private void Change_Password_Button_Click(object sender, EventArgs e)
         {
             if (Change_Password_Box.Visible == false)
@@ -68,6 +77,7 @@ namespace SpravaUzivatelu
             }
         }
 
+        // Change Password Confirm
         private void Change_Password_Confirm_Click(object sender, EventArgs e)
         {
             (bool success, string ErrorMessage) = actionmanager.ChangeMyPassword(Old_Password_Text.Text, New_Password_Text.Text);
@@ -82,6 +92,7 @@ namespace SpravaUzivatelu
             }
         }
 
+        // To Admin View
         private void To_Admin_Button_Click(object sender, EventArgs e)
         {
             FormHelper.OpenForm(this, new AdminView());

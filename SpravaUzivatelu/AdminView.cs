@@ -8,12 +8,14 @@ namespace SpravaUzivatelu
     public partial class AdminView : Form
     {
         ActionManager actionManager = ActionManager.Instance;
-        private enum DataViewType { None, Logs, Users }
+        private enum DataViewType { None, Logs, Users } // Track current view
         private DataViewType currentView = DataViewType.None;
 
         public AdminView()
         {
             InitializeComponent();
+
+            // DatagridView
             dataGridView.Visible = false;
             dataGridView.AutoGenerateColumns = true;
             dataGridView.ReadOnly = true;
@@ -21,10 +23,12 @@ namespace SpravaUzivatelu
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.Font = new System.Drawing.Font("Consolas", 8);
+
+            // Errors
             Error_Delete_Label.Text = "";
             Error_Create_Label.Text = "";
 
-            // Show only for user creation
+            // User creation only
             Confirm_Password_Text.Visible = Create_User_Radio.Checked;
             label3.Visible = Create_User_Radio.Checked;
         }
@@ -43,13 +47,13 @@ namespace SpravaUzivatelu
 
             if (!success || dataObj == null)
             {
-                MessageBox.Show("Cant show logs: " + message);
+                MessageBox.Show(message);
                 return;
             }
 
-            if (dataObj is DataTable dt)
+            if (dataObj is DataTable datatable)
             {
-                dataGridView.DataSource = dt;
+                dataGridView.DataSource = datatable;
                 SetLogColumnsHeaders();
                 dataGridView.Visible = true;
                 currentView = DataViewType.Logs;
@@ -66,19 +70,20 @@ namespace SpravaUzivatelu
                 return;
             }
 
-            var dt = actionManager.ViewAllUsers();
-            if (dt == null)
+            DataTable datatable = actionManager.ViewAllUsers();
+            if (datatable == null)
             {
                 MessageBox.Show("Cant show users");
                 return;
             }
 
-            dataGridView.DataSource = dt;
+            dataGridView.DataSource = datatable;
             SetUserColumnsHeaders();
             dataGridView.Visible = true;
             currentView = DataViewType.Users;
         }
 
+        // Setup DataGridView columns headers
         private void SetLogColumnsHeaders()
         {
             if (dataGridView.Columns.Contains("Id"))
@@ -93,6 +98,7 @@ namespace SpravaUzivatelu
                 dataGridView.Columns["Details"].HeaderText = "Details";
         }
 
+        // Setup DataGridView columns headers
         private void SetUserColumnsHeaders()
         {
             if (dataGridView.Columns.Contains("Username"))
@@ -100,7 +106,7 @@ namespace SpravaUzivatelu
             if (dataGridView.Columns.Contains("Role"))
                 dataGridView.Columns["Role"].HeaderText = "Role";
             if (dataGridView.Columns.Contains("CreatedAt"))
-                dataGridView.Columns["CreatedAt"].HeaderText = "Added";
+                dataGridView.Columns["CreatedAt"].HeaderText = "CreateAt";
         }
 
         // Open User View Form
@@ -109,13 +115,12 @@ namespace SpravaUzivatelu
             FormHelper.OpenForm(this, new UserView());
         }
 
-        // Show/Hide Confirm Password
+        // Show/Hide Confirm Password (ActionManager go brrr, TODO: For Admin add confirm password)
         private void Create_User_Radio_CheckedChanged(object sender, EventArgs e)
         {
             label3.Visible = Create_User_Radio.Checked;
             Confirm_Password_Text.Visible = Create_User_Radio.Checked;
         }
-
         private void Create_Admin_Radio_CheckedChanged(object sender, EventArgs e)
         {
             label3.Visible = false;
@@ -125,12 +130,9 @@ namespace SpravaUzivatelu
         // Create User/Admin
         private void Create_Button_Click(object sender, EventArgs e)
         {
-            string username = Username_Text.Text;
-            string password = Password_Text.Text;
-
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(Password_Text.Text))
+            if (string.IsNullOrWhiteSpace(Username_Text.Text) || string.IsNullOrWhiteSpace(Password_Text.Text))
             {
-                Error_Create_Label.Text = ("Not valid inputs");
+                Error_Create_Label.Text = ("Invalid inputs");
                 return;
             }
 
@@ -146,7 +148,7 @@ namespace SpravaUzivatelu
             }
             else
             {
-                Error_Create_Label.Text = ("Choosse admin or user");
+                Error_Create_Label.Text = ("Something invalid");
             }
 
             // Clear
@@ -155,14 +157,9 @@ namespace SpravaUzivatelu
             Confirm_Password_Text.Clear();
         }
 
+        // Delete anyone
         private void Delete_Button_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(Delete_Username_Text.Text))
-            {
-                Error_Delete_Label.Text = ("Invalid Username");
-                return;
-            }
-
             var (success, message) = actionManager.DeleteUser(Delete_Username_Text.Text);
 
             if (success)
@@ -173,8 +170,8 @@ namespace SpravaUzivatelu
                 // If currently viewing users refresh the list
                 if (currentView == DataViewType.Users && dataGridView.Visible)
                 {
-                    var dt = actionManager.ViewAllUsers();
-                    if (dt != null) dataGridView.DataSource = dt;
+                    DataTable datatable = actionManager.ViewAllUsers();
+                    if (datatable != null) dataGridView.DataSource = datatable;
                 }
             }
             else

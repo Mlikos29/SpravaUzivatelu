@@ -14,22 +14,22 @@ namespace SpravaUzivatelu
         public AdminView()
         {
             InitializeComponent();
-
-            // Datagrid na začátku skrytý
             dataGridView.Visible = false;
-
             dataGridView.AutoGenerateColumns = true;
             dataGridView.ReadOnly = true;
             dataGridView.AllowUserToAddRows = false;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.Font = new System.Drawing.Font("Consolas", 8);
+            Error_Delete_Label.Text = "";
+            Error_Create_Label.Text = "";
 
-            // Na začátku potvrzení hesla viditelné jen pro usery
+            // Show only for user creation
             Confirm_Password_Text.Visible = Create_User_Radio.Checked;
             label3.Visible = Create_User_Radio.Checked;
         }
 
+        // Logs
         private void Show_Logs_Button_Click(object sender, EventArgs e)
         {
             if (currentView == DataViewType.Logs)
@@ -43,7 +43,7 @@ namespace SpravaUzivatelu
 
             if (!success || dataObj == null)
             {
-                MessageBox.Show("Nepodařilo se načíst logy: " + message);
+                MessageBox.Show("Cant show logs: " + message);
                 return;
             }
 
@@ -56,6 +56,7 @@ namespace SpravaUzivatelu
             }
         }
 
+        // Users
         private void ButtonShowUsers_Click(object sender, EventArgs e)
         {
             if (currentView == DataViewType.Users)
@@ -68,7 +69,7 @@ namespace SpravaUzivatelu
             var dt = actionManager.ViewAllUsers();
             if (dt == null)
             {
-                MessageBox.Show("Nepodařilo se načíst uživatele.");
+                MessageBox.Show("Cant show users");
                 return;
             }
 
@@ -83,35 +84,36 @@ namespace SpravaUzivatelu
             if (dataGridView.Columns.Contains("Id"))
                 dataGridView.Columns["Id"].HeaderText = "Id";
             if (dataGridView.Columns.Contains("Timestamp"))
-                dataGridView.Columns["Timestamp"].HeaderText = "Čas";
+                dataGridView.Columns["Timestamp"].HeaderText = "Timestamp";
             if (dataGridView.Columns.Contains("Username"))
-                dataGridView.Columns["Username"].HeaderText = "Uživatel";
+                dataGridView.Columns["Username"].HeaderText = "Username";
             if (dataGridView.Columns.Contains("Action"))
-                dataGridView.Columns["Action"].HeaderText = "Akce";
+                dataGridView.Columns["Action"].HeaderText = "Action";
             if (dataGridView.Columns.Contains("Details"))
-                dataGridView.Columns["Details"].HeaderText = "Detaily";
+                dataGridView.Columns["Details"].HeaderText = "Details";
         }
 
         private void SetUserColumnsHeaders()
         {
             if (dataGridView.Columns.Contains("Username"))
-                dataGridView.Columns["Username"].HeaderText = "Uživatel";
+                dataGridView.Columns["Username"].HeaderText = "Username";
             if (dataGridView.Columns.Contains("Role"))
                 dataGridView.Columns["Role"].HeaderText = "Role";
             if (dataGridView.Columns.Contains("CreatedAt"))
-                dataGridView.Columns["CreatedAt"].HeaderText = "Vytvořen";
+                dataGridView.Columns["CreatedAt"].HeaderText = "Added";
         }
 
+        // Open User View Form
         private void User_View_Button_Click(object sender, EventArgs e)
         {
             FormHelper.OpenForm(this, new UserView());
         }
 
-        // --- Zobrazení / schování Confirm Password podle typu ---
+        // Show/Hide Confirm Password
         private void Create_User_Radio_CheckedChanged(object sender, EventArgs e)
         {
-            Confirm_Password_Text.Visible = Create_User_Radio.Checked;
             label3.Visible = Create_User_Radio.Checked;
+            Confirm_Password_Text.Visible = Create_User_Radio.Checked;
         }
 
         private void Create_Admin_Radio_CheckedChanged(object sender, EventArgs e)
@@ -120,38 +122,65 @@ namespace SpravaUzivatelu
             Confirm_Password_Text.Visible = false;
         }
 
-        // --- Vytvoření User / Admin ---
+        // Create User/Admin
         private void Create_Button_Click(object sender, EventArgs e)
         {
-            string username = Username_Text.Text.Trim();
+            string username = Username_Text.Text;
             string password = Password_Text.Text;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(Password_Text.Text))
             {
-                MessageBox.Show("Zadejte uživatelské jméno a heslo.");
+                Error_Create_Label.Text = ("Not valid inputs");
                 return;
             }
 
             if (Create_Admin_Radio.Checked)
             {
-                var (success, message) = actionManager.CreateNewAdmin(username, password);
+                var (success, message) = actionManager.CreateNewAdmin(Username_Text.Text, Password_Text.Text);
                 MessageBox.Show(message);
             }
             else if (Create_User_Radio.Checked)
             {
-                string confirm = Confirm_Password_Text.Text;
-                var (success, message) = actionManager.RegisterNewUser(username, password, confirm);
+                var (success, message) = actionManager.RegisterNewUser(Username_Text.Text, Password_Text.Text,Confirm_Password_Text.Text);
                 MessageBox.Show(message);
             }
             else
             {
-                MessageBox.Show("Vyberte typ účtu: User nebo Admin.");
+                Error_Create_Label.Text = ("Choosse admin or user");
             }
 
-            // Vyčistit políčka
+            // Clear
             Username_Text.Clear();
             Password_Text.Clear();
             Confirm_Password_Text.Clear();
+        }
+
+        private void Delete_Button_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Delete_Username_Text.Text))
+            {
+                Error_Delete_Label.Text = ("Invalid Username");
+                return;
+            }
+
+            var (success, message) = actionManager.DeleteUser(Delete_Username_Text.Text);
+
+            if (success)
+            {
+                MessageBox.Show($"User {Delete_Username_Text.Text} has been deleted.");
+                Delete_Username_Text.Clear();
+
+                // If currently viewing users refresh the list
+                if (currentView == DataViewType.Users && dataGridView.Visible)
+                {
+                    var dt = actionManager.ViewAllUsers();
+                    if (dt != null) dataGridView.DataSource = dt;
+                }
+            }
+            else
+            {
+                Error_Delete_Label.Text =(message);
+            }
         }
     }
 }

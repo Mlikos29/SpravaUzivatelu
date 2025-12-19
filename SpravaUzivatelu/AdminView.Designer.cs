@@ -46,8 +46,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.Error_Create_Label = new System.Windows.Forms.Label();
+            this.Error_Delete_Label = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.databaseManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseManagerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +68,7 @@
             // ButtonShowUsers
             // 
             this.ButtonShowUsers.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ButtonShowUsers.Location = new System.Drawing.Point(12, 8);
+            this.ButtonShowUsers.Location = new System.Drawing.Point(12, 91);
             this.ButtonShowUsers.Name = "ButtonShowUsers";
             this.ButtonShowUsers.Size = new System.Drawing.Size(136, 54);
             this.ButtonShowUsers.TabIndex = 1;
@@ -94,7 +98,7 @@
             // Show_Logs_Button
             // 
             this.Show_Logs_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Show_Logs_Button.Location = new System.Drawing.Point(154, 8);
+            this.Show_Logs_Button.Location = new System.Drawing.Point(154, 91);
             this.Show_Logs_Button.Name = "Show_Logs_Button";
             this.Show_Logs_Button.Size = new System.Drawing.Size(136, 54);
             this.Show_Logs_Button.TabIndex = 4;
@@ -105,7 +109,7 @@
             // Create_Button
             // 
             this.Create_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Create_Button.Location = new System.Drawing.Point(597, 290);
+            this.Create_Button.Location = new System.Drawing.Point(3, 179);
             this.Create_Button.Name = "Create_Button";
             this.Create_Button.Size = new System.Drawing.Size(80, 37);
             this.Create_Button.TabIndex = 5;
@@ -117,7 +121,7 @@
             // 
             this.Create_User_Radio.AutoSize = true;
             this.Create_User_Radio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Create_User_Radio.Location = new System.Drawing.Point(597, 115);
+            this.Create_User_Radio.Location = new System.Drawing.Point(3, 3);
             this.Create_User_Radio.Name = "Create_User_Radio";
             this.Create_User_Radio.Size = new System.Drawing.Size(91, 17);
             this.Create_User_Radio.TabIndex = 6;
@@ -130,7 +134,7 @@
             // 
             this.Create_Admin_Radio.AutoSize = true;
             this.Create_Admin_Radio.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Create_Admin_Radio.Location = new System.Drawing.Point(597, 139);
+            this.Create_Admin_Radio.Location = new System.Drawing.Point(3, 26);
             this.Create_Admin_Radio.Name = "Create_Admin_Radio";
             this.Create_Admin_Radio.Size = new System.Drawing.Size(97, 17);
             this.Create_Admin_Radio.TabIndex = 7;
@@ -142,38 +146,42 @@
             // Delete_Button
             // 
             this.Delete_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Delete_Button.Location = new System.Drawing.Point(600, 368);
+            this.Delete_Button.Location = new System.Drawing.Point(622, 363);
             this.Delete_Button.Name = "Delete_Button";
             this.Delete_Button.Size = new System.Drawing.Size(75, 23);
             this.Delete_Button.TabIndex = 8;
             this.Delete_Button.Text = "Delete";
             this.Delete_Button.UseVisualStyleBackColor = true;
+            this.Delete_Button.Click += new System.EventHandler(this.Delete_Button_Click);
             // 
             // Delete_Username_Text
             // 
             this.Delete_Username_Text.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Delete_Username_Text.Location = new System.Drawing.Point(600, 346);
+            this.Delete_Username_Text.Location = new System.Drawing.Point(622, 324);
             this.Delete_Username_Text.Name = "Delete_Username_Text";
             this.Delete_Username_Text.Size = new System.Drawing.Size(116, 20);
             this.Delete_Username_Text.TabIndex = 10;
             // 
             // Username_Text
             // 
-            this.Username_Text.Location = new System.Drawing.Point(597, 182);
+            this.Username_Text.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Username_Text.Location = new System.Drawing.Point(3, 62);
             this.Username_Text.Name = "Username_Text";
             this.Username_Text.Size = new System.Drawing.Size(119, 20);
             this.Username_Text.TabIndex = 11;
             // 
             // Password_Text
             // 
-            this.Password_Text.Location = new System.Drawing.Point(597, 222);
+            this.Password_Text.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Password_Text.Location = new System.Drawing.Point(3, 101);
             this.Password_Text.Name = "Password_Text";
             this.Password_Text.Size = new System.Drawing.Size(119, 20);
             this.Password_Text.TabIndex = 12;
             // 
             // Confirm_Password_Text
             // 
-            this.Confirm_Password_Text.Location = new System.Drawing.Point(597, 264);
+            this.Confirm_Password_Text.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Confirm_Password_Text.Location = new System.Drawing.Point(3, 140);
             this.Confirm_Password_Text.Name = "Confirm_Password_Text";
             this.Confirm_Password_Text.Size = new System.Drawing.Size(119, 20);
             this.Confirm_Password_Text.TabIndex = 13;
@@ -181,7 +189,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(597, 166);
+            this.label1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(3, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 14;
@@ -190,29 +199,73 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(597, 205);
+            this.label2.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(3, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 15;
             this.label2.Text = "Password";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(597, 245);
+            this.label3.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(3, 124);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
+            this.label3.Size = new System.Drawing.Size(103, 13);
             this.label3.TabIndex = 16;
             this.label3.Text = "Confirm password";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(597, 330);
+            this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(619, 308);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 17;
             this.label4.Text = "Username";
+            // 
+            // Error_Create_Label
+            // 
+            this.Error_Create_Label.AutoSize = true;
+            this.Error_Create_Label.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Error_Create_Label.ForeColor = System.Drawing.Color.Red;
+            this.Error_Create_Label.Location = new System.Drawing.Point(3, 163);
+            this.Error_Create_Label.Name = "Error_Create_Label";
+            this.Error_Create_Label.Size = new System.Drawing.Size(37, 13);
+            this.Error_Create_Label.TabIndex = 18;
+            this.Error_Create_Label.Text = "Error";
+            // 
+            // Error_Delete_Label
+            // 
+            this.Error_Delete_Label.AutoSize = true;
+            this.Error_Delete_Label.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Error_Delete_Label.ForeColor = System.Drawing.Color.Red;
+            this.Error_Delete_Label.Location = new System.Drawing.Point(622, 347);
+            this.Error_Delete_Label.Name = "Error_Delete_Label";
+            this.Error_Delete_Label.Size = new System.Drawing.Size(37, 13);
+            this.Error_Delete_Label.TabIndex = 19;
+            this.Error_Delete_Label.Text = "Error";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.flowLayoutPanel1.Controls.Add(this.Create_User_Radio);
+            this.flowLayoutPanel1.Controls.Add(this.Create_Admin_Radio);
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.Username_Text);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.Password_Text);
+            this.flowLayoutPanel1.Controls.Add(this.label3);
+            this.flowLayoutPanel1.Controls.Add(this.Confirm_Password_Text);
+            this.flowLayoutPanel1.Controls.Add(this.Error_Create_Label);
+            this.flowLayoutPanel1.Controls.Add(this.Create_Button);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(622, 66);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(141, 239);
+            this.flowLayoutPanel1.TabIndex = 20;
             // 
             // databaseManagerBindingSource
             // 
@@ -223,27 +276,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Error_Delete_Label);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Confirm_Password_Text);
-            this.Controls.Add(this.Password_Text);
-            this.Controls.Add(this.Username_Text);
             this.Controls.Add(this.Delete_Username_Text);
             this.Controls.Add(this.Delete_Button);
-            this.Controls.Add(this.Create_Admin_Radio);
-            this.Controls.Add(this.Create_User_Radio);
-            this.Controls.Add(this.Create_Button);
             this.Controls.Add(this.Show_Logs_Button);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.User_View_Button);
             this.Controls.Add(this.ButtonShowUsers);
             this.Controls.Add(this.LabelAdminView);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "AdminView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminView";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.databaseManagerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -270,5 +318,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Error_Create_Label;
+        private System.Windows.Forms.Label Error_Delete_Label;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

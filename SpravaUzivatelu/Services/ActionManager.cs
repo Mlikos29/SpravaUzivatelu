@@ -71,7 +71,7 @@ public class ActionManager
     }
 
     // Smazání uživatele
-
+    //TODO: Prevent admin from deleting themselves
     public (bool success, string message) DeleteUser(string username)
     {
         if (currentUser?.Role != "Admin")

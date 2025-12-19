@@ -10,7 +10,7 @@ namespace SpravaUzivatelu.DbContext
     {
         private static readonly string ConnectionString = "Data Source=users.db;Version=3;";
 
-        // Inicializuje databázi a vytvoří tabulky pokud neexistují
+        //// Inicializuje databázi a vytvoří tabulky pokud neexistují
 
         public void InitializeDatabase()
         {

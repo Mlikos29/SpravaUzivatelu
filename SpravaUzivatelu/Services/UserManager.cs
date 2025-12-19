@@ -31,7 +31,7 @@ namespace SpravaUzivatelu
                 return (false, "Passwords do not match.");
             }
 
-            if (ValidateUsername(username))
+            if (UsernameExists(username))
             {
                 return (false, "Username is already used.");
             }
@@ -47,7 +47,11 @@ namespace SpravaUzivatelu
             User newUser = new User(username, hashedPassword, isAdmin ? "Admin" : "User", DateTime.Now);
 
             //Uložení uživatele do databáze
-            _databaseManager.AddUser(newUser);
+            bool added = _databaseManager.AddUser(newUser);
+            if (!added)
+            {
+                return (false, "Username is already used.");
+            }
 
             return (true, "Uživatel byl zaregistrován");
         }
@@ -126,14 +130,9 @@ namespace SpravaUzivatelu
             return (true, "User was successfully deleted");
         }
         // Validace uživatelského jména
-        private bool ValidateUsername(string username)
+        private bool UsernameExists(string username)
         {
-            if (_databaseManager.UserExists(username))
-            {
-                return false;
-            }
-
-            return true;
+            return _databaseManager.UserExists(username);
         }
 
         // Validace hesla

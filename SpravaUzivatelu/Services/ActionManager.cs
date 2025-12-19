@@ -127,13 +127,16 @@ public class ActionManager
     public (bool success, string message) RegisterNewUser(string username, string password, string confirmPassword)
     {
         var (success, message) = _userManager.RegisterUser(username, password, confirmPassword);
-        if (success)
-        {
-            DatabaseManager.LogEvent(currentUser.Username, "VYTVOŘENÍ_USERU",
-                $"Vytvořen nový user: {username}");
-            return (true, $"Uživatel {username} byl vytvořen");
-        }
-        return (false, "Nepodařilo se vytvořit uživatele");
 
+        if (!success)
+            return (false, message);
+
+        DatabaseManager.LogEvent(
+            "SYSTEM",
+            "VYTVOŘENÍ_USERU",
+            $"Vytvořen nový user: {username}"
+        );
+
+        return (true, $"Uživatel {username} byl vytvořen");
     }
 }

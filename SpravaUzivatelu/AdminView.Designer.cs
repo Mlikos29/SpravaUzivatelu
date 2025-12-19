@@ -39,14 +39,14 @@
             this.Create_Admin_Radio = new System.Windows.Forms.RadioButton();
             this.Delete_Button = new System.Windows.Forms.Button();
             this.Delete_Username_Text = new System.Windows.Forms.TextBox();
-            this.databaseManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.Username_Text = new System.Windows.Forms.TextBox();
+            this.Password_Text = new System.Windows.Forms.TextBox();
+            this.Confirm_Password_Text = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.databaseManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseManagerBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -157,57 +157,53 @@
             this.Delete_Username_Text.Size = new System.Drawing.Size(116, 20);
             this.Delete_Username_Text.TabIndex = 10;
             // 
-            // databaseManagerBindingSource
+            // Username_Text
             // 
-            this.databaseManagerBindingSource.DataSource = typeof(SpravaUzivatelu.DbContext.DatabaseManager);
+            this.Username_Text.Location = new System.Drawing.Point(597, 182);
+            this.Username_Text.Name = "Username_Text";
+            this.Username_Text.Size = new System.Drawing.Size(119, 20);
+            this.Username_Text.TabIndex = 11;
             // 
-            // textBox1
+            // Password_Text
             // 
-            this.textBox1.Location = new System.Drawing.Point(597, 182);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 20);
-            this.textBox1.TabIndex = 11;
+            this.Password_Text.Location = new System.Drawing.Point(597, 222);
+            this.Password_Text.Name = "Password_Text";
+            this.Password_Text.Size = new System.Drawing.Size(119, 20);
+            this.Password_Text.TabIndex = 12;
             // 
-            // textBox2
+            // Confirm_Password_Text
             // 
-            this.textBox2.Location = new System.Drawing.Point(597, 222);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(119, 20);
-            this.textBox2.TabIndex = 12;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(597, 264);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(119, 20);
-            this.textBox3.TabIndex = 13;
+            this.Confirm_Password_Text.Location = new System.Drawing.Point(597, 264);
+            this.Confirm_Password_Text.Name = "Confirm_Password_Text";
+            this.Confirm_Password_Text.Size = new System.Drawing.Size(119, 20);
+            this.Confirm_Password_Text.TabIndex = 13;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(597, 166);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 14;
-            this.label1.Text = "label1";
+            this.label1.Text = "Username";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(597, 205);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 15;
-            this.label2.Text = "label2";
+            this.label2.Text = "Password";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(597, 245);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 16;
-            this.label3.Text = "label3";
+            this.label3.Text = "Confirm password";
             // 
             // label4
             // 
@@ -218,6 +214,10 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Username";
             // 
+            // databaseManagerBindingSource
+            // 
+            this.databaseManagerBindingSource.DataSource = typeof(SpravaUzivatelu.DbContext.DatabaseManager);
+            // 
             // AdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,9 +227,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Confirm_Password_Text);
+            this.Controls.Add(this.Password_Text);
+            this.Controls.Add(this.Username_Text);
             this.Controls.Add(this.Delete_Username_Text);
             this.Controls.Add(this.Delete_Button);
             this.Controls.Add(this.Create_Admin_Radio);
@@ -263,9 +263,9 @@
         private System.Windows.Forms.RadioButton Create_Admin_Radio;
         private System.Windows.Forms.Button Delete_Button;
         private System.Windows.Forms.TextBox Delete_Username_Text;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox Username_Text;
+        private System.Windows.Forms.TextBox Password_Text;
+        private System.Windows.Forms.TextBox Confirm_Password_Text;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

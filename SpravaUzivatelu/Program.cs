@@ -15,7 +15,6 @@ namespace SpravaUzivatelu
         [STAThread]
         static void Main()
         {
-            
             Application.EnableVisualStyles();
             DatabaseManager db = new DatabaseManager();
             Application.SetCompatibleTextRenderingDefault(false);

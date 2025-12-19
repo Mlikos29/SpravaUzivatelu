@@ -33,7 +33,7 @@ namespace SpravaUzivatelu
 
             if (ValidateUsername(username))
             {
-                return (false, "Username is allready used.");
+                return (false, "Username is already used.");
             }
 
             (bool isPassValid, string errorMessage) = ValidatePassword(password);

@@ -15,6 +15,24 @@ namespace SpravaUzivatelu
         public UserView()
         {
             InitializeComponent();
+            Change_Password_Box.Visible = false;
+        }
+
+        private void View_Profile_Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Change_Password_Button_Click(object sender, EventArgs e)
+        {
+            if (Change_Password_Box.Visible == false)
+            {
+                Change_Password_Box.Visible = true;
+            }
+            else if (Change_Password_Box.Visible == true)
+            {
+                Change_Password_Box.Visible = false;
+            }
         }
     }
 }

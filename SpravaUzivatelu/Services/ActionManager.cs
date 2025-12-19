@@ -123,7 +123,7 @@ public class ActionManager
 
         return (false, "Nepodařilo se vytvořit administrátora");
     }
-
+    // Registrace nového uživatele
     public (bool success, string message) RegisterNewUser(string username, string password, string confirmPassword)
     {
         var (success, message) = _userManager.RegisterUser(username, password, confirmPassword);

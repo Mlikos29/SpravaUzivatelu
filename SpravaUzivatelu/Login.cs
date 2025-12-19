@@ -12,6 +12,7 @@ namespace SpravaUzivatelu
 {
     public partial class Login : Form
     {
+        private ActionManager actionManager;
         public Login()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace SpravaUzivatelu
             LinkToRegistration.Text = "Register";
             ConfirmPasswordTextBox.Visible = false;
             LabelConfirmPassword.Visible = false;
+            actionManager = new ActionManager();
         }
         private void LoginButton_Click(object sender, EventArgs e)
         {
@@ -37,10 +39,10 @@ namespace SpravaUzivatelu
         }
         private void RegistrationUser()
         {
-            bool isOk = UserManager.RegisterUser(UsernameTextBox.Text, PasswordTextBox.Text, ConfirmPasswordTextBox.Text);
+            (bool isOk, string Errormessage) = actionManager.RegisterNewUser(UsernameTextBox.Text, PasswordTextBox.Text, ConfirmPasswordTextBox.Text);
             if (!isOk)
             {
-                LabelErrorMessage.Text = UserManager.ErrorMessage;
+                LabelErrorMessage.Text = Errormessage;
                 return;
             }
             LabelErrorMessage.Text = "";
@@ -49,7 +51,7 @@ namespace SpravaUzivatelu
         private void LoginUser()
         {
             bool isOk = UserManager.LoginUser(UsernameTextBox.Text, PasswordTextBox.Text);
-
+            
             if (!isOk)
             {
                 LabelErrorMessage.Text = UserManager.ErrorMessage;
@@ -59,7 +61,7 @@ namespace SpravaUzivatelu
             LabelErrorMessage.Text = "";
 
             // otevřít formulář podle role
-            if (UserManager.LoggedUser.Role == "Admin")
+            if (ActionManager.Role == "Admin")
             {
                 OpenForm(new AdminView());
             }

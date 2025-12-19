@@ -67,7 +67,7 @@
             // 
             // ButtonShowUsers
             // 
-            this.ButtonShowUsers.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ButtonShowUsers.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ButtonShowUsers.Location = new System.Drawing.Point(12, 91);
             this.ButtonShowUsers.Name = "ButtonShowUsers";
             this.ButtonShowUsers.Size = new System.Drawing.Size(136, 54);
@@ -97,7 +97,7 @@
             // 
             // Show_Logs_Button
             // 
-            this.Show_Logs_Button.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Show_Logs_Button.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Show_Logs_Button.Location = new System.Drawing.Point(154, 91);
             this.Show_Logs_Button.Name = "Show_Logs_Button";
             this.Show_Logs_Button.Size = new System.Drawing.Size(136, 54);

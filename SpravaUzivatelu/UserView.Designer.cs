@@ -52,9 +52,9 @@
             this.label1.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(303, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 24);
+            this.label1.Size = new System.Drawing.Size(118, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ShotAnegrFy";
+            this.label1.Text = "User View";
             // 
             // Change_Password_Button
             // 
